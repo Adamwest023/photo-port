@@ -3,8 +3,12 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
+import ContactForm from './components/Contact';
 
 function App() {
+  //add useState hook to maintain state
+  const [contactSelected,setContactSelected] = useState(false);
+
   const [categories] = useState([
     {
       name: 'commercial',
@@ -23,11 +27,20 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        {/* if the  contactSelected is false the selected this will render */}
+       {!contactSelected ? (
+         <>
+         <Gallery currentCategory={currentCategory}></Gallery>
+         <About></About>
+         </>
+        //  else statement will render if contactSelected
+       ):(
+         <ContactForm></ContactForm>
+       )}
       </main>
     </div>
   );
