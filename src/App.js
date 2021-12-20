@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import Nav from './components/Nav';
 import About from './components/About';
 import Gallery from './components/Gallery';
-import Contact from './components/Contact';
 import ContactForm from './components/Contact';
 
 function App() {
   //add useState hook to maintain state
-  const [contactSelected,setContactSelected] = useState(false);
 
   const [categories] = useState([
     {
@@ -18,6 +16,8 @@ function App() {
     { name: 'food', description: 'Delicious delicacies' },
     { name: 'landscape', description: 'Fields, farmhouses, waterfalls, and the beauty of nature' },
   ]);
+
+  const [contactSelected, setContactSelected] = useState(false);
 
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
@@ -32,15 +32,15 @@ function App() {
       ></Nav>
       <main>
         {/* if the  contactSelected is false the selected this will render */}
-       {!contactSelected ? (
-         <>
-         <Gallery currentCategory={currentCategory}></Gallery>
-         <About></About>
-         </>
-        //  else statement will render if contactSelected
-       ):(
-         <ContactForm></ContactForm>
-       )}
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+          //  else statement will render if contactSelected
+        ) : (
+          <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
